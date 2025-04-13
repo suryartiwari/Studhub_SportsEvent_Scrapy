@@ -33,14 +33,20 @@ try:
    # 6. Loop through first  event cards
     for card in event_cards[:event_cards_count]:  
         try:
+            # 7. web element for title
             title_element = card.find_element(By.XPATH, ".//p[@class='sc-9b60a1e0-6 hvVHAU']")
             image_element = card.find_element(By.XPATH, ".//img")
  
             # Defaults
             date_time = ""
             location = ""
- 
+
+            # 8. counting elements of all date_time and location collectively
             details = card.find_elements(By.XPATH, ".//p[@class='sc-9b60a1e0-8 haloEs']")
+
+            # 9. if the count of "details" is not completely divisible by 2, we will consider as date_time element, 
+            # if the count of "details" is completely divisible by 2, we will consider as location element
+            
             if len(details) == 2:
                 date_time = details[0].text.strip()
                 location = details[1].text.strip()
